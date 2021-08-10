@@ -484,6 +484,18 @@
     <Compile Include="Presentacion\USUARIOS_Y_PERMISOS\usuariosok.Designer.cs">
       <DependentUpon>usuariosok.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_CLIENTE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_CLIENTE.designer.cs">
+      <DependentUpon>BUSCAR_CLIENTE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_PRODUCTO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_PRODUCTO.designer.cs">
+      <DependentUpon>BUSCAR_PRODUCTO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\CANTIDAD_A_GRANEL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -507,6 +519,12 @@
     </Compile>
     <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\VENTAS_MENU_PRINCIPALOK.Designer.cs">
       <DependentUpon>VENTAS_MENU_PRINCIPALOK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\VENTAS_MENU_PRINCIPAL_FINAL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\VENTAS_MENU_PRINCIPAL\VENTAS_MENU_PRINCIPAL_FINAL.designer.cs">
+      <DependentUpon>VENTAS_MENU_PRINCIPAL_FINAL.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -684,6 +702,12 @@
     <EmbeddedResource Include="Presentacion\USUARIOS_Y_PERMISOS\usuariosok.resx">
       <DependentUpon>usuariosok.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_CLIENTE.resx">
+      <DependentUpon>BUSCAR_CLIENTE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\VENTAS_MENU_PRINCIPAL\BUSCAR_PRODUCTO.resx">
+      <DependentUpon>BUSCAR_PRODUCTO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\VENTAS_MENU_PRINCIPAL\CANTIDAD_A_GRANEL.resx">
       <DependentUpon>CANTIDAD_A_GRANEL.cs</DependentUpon>
     </EmbeddedResource>
@@ -695,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\VENTAS_MENU_PRINCIPAL\VENTAS_MENU_PRINCIPALOK.resx">
       <DependentUpon>VENTAS_MENU_PRINCIPALOK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\VENTAS_MENU_PRINCIPAL\VENTAS_MENU_PRINCIPAL_FINAL.resx">
+      <DependentUpon>VENTAS_MENU_PRINCIPAL_FINAL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

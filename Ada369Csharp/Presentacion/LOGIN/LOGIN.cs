@@ -769,7 +769,7 @@ namespace Ada369Csharp.Presentacion
                 {
                     editar_inicio_De_sesion();
                     Dispose();
-                    VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK();
+                    VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL();
                     frm.ShowDialog();
                         
                     }
@@ -777,11 +777,9 @@ namespace Ada369Csharp.Presentacion
                 {
                     editar_inicio_De_sesion();
                     Dispose();
-                    VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK  frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK();
+                    VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL();
                     frm.ShowDialog();
-                        
-
-                    }
+                }
              }
 
             }

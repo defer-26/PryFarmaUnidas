@@ -408,7 +408,7 @@ namespace Ada369Csharp.Presentacion.Admin_nivel_dios
             {
           
                 Dispose();
-                VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK frmVentas = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK();
+                VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL frmVentas = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL();
                 frmVentas.ShowDialog();
 
             }
