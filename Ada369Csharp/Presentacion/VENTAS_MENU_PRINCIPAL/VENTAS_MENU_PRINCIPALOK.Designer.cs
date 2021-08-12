@@ -366,7 +366,7 @@
             this.PanelC1.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelC1.Location = new System.Drawing.Point(0, 0);
             this.PanelC1.Name = "PanelC1";
-            this.PanelC1.Size = new System.Drawing.Size(1498, 47);
+            this.PanelC1.Size = new System.Drawing.Size(1370, 47);
             this.PanelC1.TabIndex = 507;
             this.PanelC1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel17_Paint);
             // 
@@ -2404,7 +2404,7 @@
             this.Panel14.BackColor = System.Drawing.Color.Transparent;
             this.Panel14.Controls.Add(this.ToolStrip1);
             this.Panel14.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Panel14.Location = new System.Drawing.Point(1211, 0);
+            this.Panel14.Location = new System.Drawing.Point(1083, 0);
             this.Panel14.Name = "Panel14";
             this.Panel14.Size = new System.Drawing.Size(287, 47);
             this.Panel14.TabIndex = 599;
@@ -2447,7 +2447,7 @@
             this.PanelC3.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelC3.Location = new System.Drawing.Point(0, 95);
             this.PanelC3.Name = "PanelC3";
-            this.PanelC3.Size = new System.Drawing.Size(1498, 56);
+            this.PanelC3.Size = new System.Drawing.Size(1370, 56);
             this.PanelC3.TabIndex = 597;
             // 
             // btnverMovimientosCaja
@@ -2611,7 +2611,7 @@
             this.dgDetalleventa.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgDetalleventa.RowTemplate.Height = 36;
             this.dgDetalleventa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDetalleventa.Size = new System.Drawing.Size(930, 540);
+            this.dgDetalleventa.Size = new System.Drawing.Size(802, 540);
             this.dgDetalleventa.TabIndex = 600;
             this.dgDetalleventa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoDetalleVenta_CellClick);
             this.dgDetalleventa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datalistadoDetalleVenta_CellClick);
@@ -2687,7 +2687,7 @@
             this.PanelOperaciones.Controls.Add(this.btnborrartodo);
             this.PanelOperaciones.Controls.Add(this.FlowLayoutPanel2);
             this.PanelOperaciones.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelOperaciones.Location = new System.Drawing.Point(1200, 151);
+            this.PanelOperaciones.Location = new System.Drawing.Point(1072, 151);
             this.PanelOperaciones.Name = "PanelOperaciones";
             this.PanelOperaciones.Size = new System.Drawing.Size(298, 540);
             this.PanelOperaciones.TabIndex = 608;
@@ -3162,7 +3162,7 @@
             this.panelC4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelC4.Location = new System.Drawing.Point(0, 691);
             this.panelC4.Name = "panelC4";
-            this.panelC4.Size = new System.Drawing.Size(1498, 51);
+            this.panelC4.Size = new System.Drawing.Size(1370, 51);
             this.panelC4.TabIndex = 610;
             // 
             // panelNotificacionEspera
@@ -3192,7 +3192,7 @@
             // 
             this.panel9.Controls.Add(this.btndevoluciones);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(1043, 0);
+            this.panel9.Location = new System.Drawing.Point(915, 0);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(334, 51);
             this.panel9.TabIndex = 5;
@@ -3218,7 +3218,7 @@
             this.panel6.Controls.Add(this.label1);
             this.panel6.Controls.Add(this.IndicadorTema);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(1377, 0);
+            this.panel6.Location = new System.Drawing.Point(1249, 0);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(121, 51);
             this.panel6.TabIndex = 4;
@@ -3312,7 +3312,7 @@
             this.panelBienvenida.Controls.Add(this.panel12);
             this.panelBienvenida.Controls.Add(this.label8);
             this.panelBienvenida.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelBienvenida.Location = new System.Drawing.Point(930, 151);
+            this.panelBienvenida.Location = new System.Drawing.Point(802, 151);
             this.panelBienvenida.Name = "panelBienvenida";
             this.panelBienvenida.Size = new System.Drawing.Size(270, 540);
             this.panelBienvenida.TabIndex = 611;
@@ -3360,7 +3360,7 @@
             this.panelC2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelC2.Location = new System.Drawing.Point(0, 47);
             this.panelC2.Name = "panelC2";
-            this.panelC2.Size = new System.Drawing.Size(1498, 48);
+            this.panelC2.Size = new System.Drawing.Size(1370, 48);
             this.panelC2.TabIndex = 612;
             // 
             // btnCreditoPagar
@@ -3533,7 +3533,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1498, 742);
+            this.ClientSize = new System.Drawing.Size(1370, 742);
             this.Controls.Add(this.PanelEnespera);
             this.Controls.Add(this.LABEL_STOCK);
             this.Controls.Add(this.dgDetalleventa);

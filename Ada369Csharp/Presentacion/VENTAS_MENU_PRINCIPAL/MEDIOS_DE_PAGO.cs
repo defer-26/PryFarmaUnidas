@@ -30,7 +30,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         bool SECUENCIA2 = true;
         bool SECUENCIA3 = true;
         string indicador;
-        string indicador_de_tipo_de_pago_string;
         string txttipo;
         string TXTTOTAL_STRING;
         string lblproceso;
@@ -210,14 +209,15 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             txtrestante.Text = "0.0";
             TXTTOTAL.Text = moneda + " " + VENTAS_MENU_PRINCIPAL_FINAL.total;
             total = VENTAS_MENU_PRINCIPAL_FINAL.total;
-            txtefectivo2.Text = Convert.ToString(total);
             txttipo = VENTAS_MENU_PRINCIPAL_FINAL.tipoPago;
             idcliente = 0;
 
             if (txttipo == "Efectivo") 
             {
+                txtefectivo2.Text = Convert.ToString(total);
                 Label19.Visible = false;
                 txttarjeta2.Visible = false;
+                txttarjeta2.Text = "0";
                 Panel21.Visible = false;
                 Label20.Visible = false;
                 txtcredito2.Visible = false;
@@ -225,20 +225,27 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             }
             else if (txttipo == "Crédito")
             {
+                txtcredito2.Text = Convert.ToString(total);
+                //pcredito.Visible = true;
                 Label18.Visible = false;
                 txtefectivo2.Visible = false;
+                txtefectivo2.Text = "0";
                 Panel20.Visible = false;
                 Label19.Visible = false;
                 txttarjeta2.Visible = false;
+                txttarjeta2.Text = "0";
                 Panel21.Visible = false;
             }
             else if (txttipo == "Tarjeta")
             {
+                txttarjeta2.Text = Convert.ToString(total);
                 Label18.Visible = false;
                 txtefectivo2.Visible = false;
+                txtefectivo2.Text = "0";
                 Panel20.Visible = false;
                 Label20.Visible = false;
                 txtcredito2.Visible = false;
+                txtcredito2.Text = "0";
                 Panel22.Visible = false;
             }
         }
@@ -409,7 +416,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         private void txtcredito2_TextChanged(object sender, EventArgs e)
         {
             calcular_restante();
-            ValidarPanelCredito();
+            //ValidarPanelCredito();
         }
         void ValidarPanelCredito()
         {
@@ -758,8 +765,8 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             PanelregistroClientes.Dock = DockStyle.Fill;
             PanelregistroClientes.BringToFront();
             limpiar_datos_de_registrodeclientes();
-
         }
+
         void limpiar_datos_de_registrodeclientes()
         {
             txtnombrecliente.Clear();
@@ -863,7 +870,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             else
             {
                 txtcredito2.Text = txtrestante.Text;
-                ValidarPanelCredito();
+                //ValidarPanelCredito();
             }
         }
 
@@ -876,26 +883,27 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             CONVERTIR_TOTAL_A_LETRAS();
             completar_con_ceros_los_texbox_de_otros_medios_de_pago();
-            if (txttipo == "EFECTIVO" && vuelto >= 0)
+            if (txttipo == "Efectivo" && vuelto >= 0)
             {
                 vender_en_efectivo();
 
             }
-            else if (txttipo == "EFECTIVO" && vuelto < 0)
+            else if (txttipo == "Efectivo" && vuelto < 0)
             {
                 MessageBox.Show("El vuelto no puede ser menor a el Total pagado ", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
             // condicional para creditos
-            if (txttipo == "CREDITO" && datalistadoclientes2.Visible == false)
+            if (txttipo == "Crédito" && datalistadoclientes2.Visible == false)
             {
                 vender_en_efectivo();
             }
-            else if (txttipo == "CREDITO" && datalistadoclientes2.Visible == true)
+            else if (txttipo == "Crédito" && datalistadoclientes2.Visible == true)
             {
                 MessageBox.Show("Seleccione un Cliente para Activar Pago a Credito", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-            if (txttipo == "TARJETA")
+            if (txttipo == "Tarjeta")
             {
                 vender_en_efectivo();
             }
@@ -913,7 +921,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             {
                 MOSTRAR_cliente_standar();
             }
-            if (lblComprobante.Text == "FACTURA" && idcliente == 0 && txttipo != "CREDITO")
+            if (lblComprobante.Text == "FACTURA" && idcliente == 0 && txttipo != "Crédito")
             {
                 MessageBox.Show("Seleccione un Cliente, para Facturas es Obligatorio", "Datos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -922,11 +930,11 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 procesar_venta_efectivo();
             }
 
-            else if (lblComprobante.Text != "FACTURA" && txttipo != "CREDITO")
+            else if (lblComprobante.Text != "FACTURA" && txttipo != "Crédito")
             {
                 procesar_venta_efectivo();
             }
-            else if (lblComprobante.Text != "FACTURA" && txttipo == "CREDITO")
+            else if (lblComprobante.Text != "FACTURA" && txttipo == "Crédito")
             {
                 procesar_venta_efectivo();
             }
@@ -1298,30 +1306,30 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             //calculo de indicador
             int calculo_identificacion = indicadorCredito + indicadorEfectivo + indicadorTarjeta;
             //consulta al identificador
-            if (calculo_identificacion == 4)
-            {
-                indicador_de_tipo_de_pago_string = "EFECTIVO";
-            }
-            if (calculo_identificacion == 2)
-            {
-                indicador_de_tipo_de_pago_string = "CREDITO";
-            }
-            if (calculo_identificacion == 3)
-            {
-                indicador_de_tipo_de_pago_string = "TARJETA";
-            }
-            if (calculo_identificacion > 4)
-            {
-                indicador_de_tipo_de_pago_string = "MIXTO";
-            }
-            txttipo = indicador_de_tipo_de_pago_string;
-
+            //if (calculo_identificacion == 4)
+            //{
+            //    indicador_de_tipo_de_pago_string = "EFECTIVO";
+            //}
+            //if (calculo_identificacion == 2)
+            //{
+            //    indicador_de_tipo_de_pago_string = "CREDITO";
+            //}
+            //if (calculo_identificacion == 3)
+            //{
+            //    indicador_de_tipo_de_pago_string = "TARJETA";
+            //}
+            //if (calculo_identificacion > 4)
+            //{
+            //    indicador_de_tipo_de_pago_string = "MIXTO";
+            //}
+            //txttipo = indicador_de_tipo_de_pago_string;
         }
 
         private void btnGuardarImprimirdirecto_Click(object sender, EventArgs e)
         {
 
         }
+
         void editar_eleccion_de_impresora()
         {
             try
@@ -1353,6 +1361,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             ProcesoImprimirdirecto();
         }
+
         private void ProcesoImprimirdirecto()
         {
             if (restante == 0)

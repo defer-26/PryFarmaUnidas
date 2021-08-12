@@ -1291,8 +1291,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 PanelEnespera.Dock = DockStyle.Fill;
                 txtnombre.Clear();
             }
-
-
         }
 
         private void button3_Click(object sender, EventArgs e)

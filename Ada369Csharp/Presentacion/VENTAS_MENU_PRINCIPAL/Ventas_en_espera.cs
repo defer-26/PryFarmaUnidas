@@ -26,6 +26,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             mostrar_ventas_en_espera_con_fecha_y_monto();
             Obtener_datos.Obtener_id_caja_PorSerial(ref idcaja);
         }
+
         private void mostrar_ventas_en_espera_con_fecha_y_monto()
         {
             try
@@ -47,17 +48,15 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             try
             {
-           
-            idventa =Convert.ToInt32 ( datalistado_ventas_en_espera.SelectedCells[1].Value);
-            mostrar_detalle_venta();
+                idventa = Convert.ToInt32(datalistado_ventas_en_espera.SelectedCells[1].Value);
+                mostrar_detalle_venta();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.StackTrace);
             }
-            
-
         }
+
         private void mostrar_detalle_venta()
         {
             DataTable dt = new DataTable();
@@ -86,12 +85,28 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             }
             else
             {
-            VENTAS_MENU_PRINCIPALOK.idVenta = idventa;
-            VENTAS_MENU_PRINCIPALOK.txtventagenerada = "VENTA GENERADA";
-            Editar_datos.cambio_de_Caja(idcaja, idventa);
-            Dispose();
+                VENTAS_MENU_PRINCIPAL_FINAL.idVenta = idventa;
+                VENTAS_MENU_PRINCIPAL_FINAL.txtventagenerada = "VENTA GENERADA";
+                Editar_datos.cambio_de_Caja(idcaja, idventa);
+                Dispose();
             }
             
+        }
+
+        private void datalistado_ventas_en_espera_SelectionChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    if (datalistado_ventas_en_espera.Rows.Count >= 1 && datalistado_ventas_en_espera.CurrentRow.Index >= 0)
+            //    {
+            //        idventa = Convert.ToInt32(datalistado_ventas_en_espera.SelectedCells[1].Value);
+            //        mostrar_detalle_venta();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
     }
 }

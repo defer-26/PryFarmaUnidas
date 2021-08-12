@@ -203,19 +203,26 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             total = Convert.ToDouble(txt_total_suma.Text);
             if (txtventagenerada == "VENTA GENERADA")
             {
-                if (cmbComprobante.Text == "FACTURA" && txtDocCliente.TextLength != 11)
+                if(detalleVenta.Rows.Count > 0)
                 {
-                    MessageBox.Show("Para entregar una factura el cliente debe tener registrado un RUC");
-                }
-                else if (cmbComprobante.Text == "BOLETA" && txtDocCliente.TextLength < 8)
-                {
-                    MessageBox.Show("Para entregar una boleta debe registrar al cliente");
+                    if (cmbComprobante.Text == "FACTURA" && txtDocCliente.TextLength != 11)
+                    {
+                        MessageBox.Show("Para entregar una factura el cliente debe tener registrado un RUC");
+                    }
+                    else if (cmbComprobante.Text == "BOLETA" && txtDocCliente.TextLength < 8)
+                    {
+                        MessageBox.Show("Para entregar una boleta debe registrar al cliente");
+                    }
+                    else
+                    {
+                        MEDIOS_DE_PAGO frm = new MEDIOS_DE_PAGO();
+                        frm.FormClosed += new FormClosedEventHandler(frm_FormClosed);
+                        frm.ShowDialog();
+                    }
                 }
                 else
                 {
-                    MEDIOS_DE_PAGO frm = new MEDIOS_DE_PAGO();
-                    frm.FormClosed += new FormClosedEventHandler(frm_FormClosed);
-                    frm.ShowDialog();
+                    MessageBox.Show("No ha agregado productos a la venta");
                 }
             }
             else
@@ -237,6 +244,9 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             idVenta = 0;
             Listarproductosagregados();
             txtventagenerada = "VENTA NUEVA";
+            txtDocCliente.Text = "0";
+            txtNomCliente.Text = "GENÉRICO";
+            idCliente = "1";
             sumar();
             //PanelEnespera.Visible = false;
             //panelBienvenida.Visible = true;
@@ -847,6 +857,68 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             tipoPago = cmbFormaPago.Text;
+        }
+
+        private void btnrestaurar_Click(object sender, EventArgs e)
+        {
+            Ventas_en_espera frm = new Ventas_en_espera();
+            frm.FormClosing += Frm_FormClosing1;
+            frm.ShowDialog();
+            ContarVentasEspera();
+        }
+
+        private void Frm_FormClosing1(object sender, FormClosingEventArgs e)
+        {
+            Listarproductosagregados();
+            //mostrar_panel_de_Cobro();
+        }
+
+        private void btnespera_Click(object sender, EventArgs e)
+        {
+            if (detalleVenta.RowCount > 0)
+            {
+                PanelEnespera.Visible = true;
+                PanelEnespera.BringToFront();
+                PanelEnespera.Dock = DockStyle.Fill;
+                txtnombre.Clear();
+            }
+        }
+
+        private void btnGuardarEspera_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtnombre.Text))
+            {
+                editarVentaEspera();
+            }
+            else
+            {
+                MessageBox.Show("Ingrese una referencia");
+            }
+        }
+
+        private void editarVentaEspera()
+
+        {
+            Editar_datos.ingresar_nombre_a_venta_en_espera(idVenta, txtnombre.Text);
+            Limpiar_para_venta_nueva();
+            ocularPanelenEspera();
+        }
+
+        private void ocularPanelenEspera()
+        {
+            PanelEnespera.Visible = false;
+            PanelEnespera.Dock = DockStyle.None;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ocularPanelenEspera();
+        }
+
+        private void btnAutomaticoEspera_Click(object sender, EventArgs e)
+        {
+            txtnombre.Text = "Ticket" + idVenta;
+            editarVentaEspera();
         }
     }
 }

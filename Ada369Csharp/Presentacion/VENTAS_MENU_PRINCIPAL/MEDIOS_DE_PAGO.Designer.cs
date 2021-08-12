@@ -56,6 +56,10 @@
             this.btn0 = new System.Windows.Forms.Button();
             this.btnpunto = new System.Windows.Forms.Button();
             this.btnborrartodo = new System.Windows.Forms.Button();
+            this.FlowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblCorrelativoconCeros = new System.Windows.Forms.Label();
+            this.txtserie = new System.Windows.Forms.Label();
+            this.lblComprobante = new System.Windows.Forms.Label();
             this.FlowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btn1 = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
@@ -94,10 +98,6 @@
             this.TGuardarSinImprimir = new System.Windows.Forms.Button();
             this.lblCantidad_de_numeros = new System.Windows.Forms.Label();
             this.txtnumerofin = new System.Windows.Forms.Label();
-            this.FlowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblCorrelativoconCeros = new System.Windows.Forms.Label();
-            this.txtserie = new System.Windows.Forms.Label();
-            this.lblComprobante = new System.Windows.Forms.Label();
             this.panelClienteFactura = new System.Windows.Forms.Panel();
             this.datalistadoclientes3 = new System.Windows.Forms.DataGridView();
             this.DataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -128,12 +128,12 @@
             this.PanelregistroClientes.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.FlowLayoutPanel1.SuspendLayout();
             this.FlowLayoutPanel2.SuspendLayout();
             this.pcredito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoclientes2)).BeginInit();
             this.MenuStrip9.SuspendLayout();
             this.panelGuardado_de_datos.SuspendLayout();
-            this.FlowLayoutPanel1.SuspendLayout();
             this.panelClienteFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoclientes3)).BeginInit();
             this.MenuStrip10.SuspendLayout();
@@ -162,6 +162,7 @@
             this.panel1.Controls.Add(this.btn0);
             this.panel1.Controls.Add(this.btnpunto);
             this.panel1.Controls.Add(this.btnborrartodo);
+            this.panel1.Controls.Add(this.FlowLayoutPanel1);
             this.panel1.Controls.Add(this.FlowLayoutPanel2);
             this.panel1.Controls.Add(this.lblprueba);
             this.panel1.Controls.Add(this.txtrestante);
@@ -200,7 +201,7 @@
             this.PanelregistroClientes.Controls.Add(this.label3);
             this.PanelregistroClientes.Controls.Add(this.label2);
             this.PanelregistroClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PanelregistroClientes.Location = new System.Drawing.Point(321, 100);
+            this.PanelregistroClientes.Location = new System.Drawing.Point(389, 100);
             this.PanelregistroClientes.Name = "PanelregistroClientes";
             this.PanelregistroClientes.Size = new System.Drawing.Size(775, 584);
             this.PanelregistroClientes.TabIndex = 632;
@@ -422,6 +423,50 @@
             this.btnborrartodo.Text = "Borrar";
             this.btnborrartodo.UseVisualStyleBackColor = false;
             this.btnborrartodo.Click += new System.EventHandler(this.btnborrartodo_Click);
+            // 
+            // FlowLayoutPanel1
+            // 
+            this.FlowLayoutPanel1.Controls.Add(this.lblCorrelativoconCeros);
+            this.FlowLayoutPanel1.Controls.Add(this.txtserie);
+            this.FlowLayoutPanel1.Controls.Add(this.lblComprobante);
+            this.FlowLayoutPanel1.Location = new System.Drawing.Point(23, 427);
+            this.FlowLayoutPanel1.Name = "FlowLayoutPanel1";
+            this.FlowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.FlowLayoutPanel1.Size = new System.Drawing.Size(354, 42);
+            this.FlowLayoutPanel1.TabIndex = 611;
+            // 
+            // lblCorrelativoconCeros
+            // 
+            this.lblCorrelativoconCeros.AutoSize = true;
+            this.lblCorrelativoconCeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorrelativoconCeros.ForeColor = System.Drawing.Color.White;
+            this.lblCorrelativoconCeros.Location = new System.Drawing.Point(258, 0);
+            this.lblCorrelativoconCeros.Name = "lblCorrelativoconCeros";
+            this.lblCorrelativoconCeros.Size = new System.Drawing.Size(93, 15);
+            this.lblCorrelativoconCeros.TabIndex = 606;
+            this.lblCorrelativoconCeros.Text = "Comprobante";
+            // 
+            // txtserie
+            // 
+            this.txtserie.AutoSize = true;
+            this.txtserie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtserie.ForeColor = System.Drawing.Color.White;
+            this.txtserie.Location = new System.Drawing.Point(159, 0);
+            this.txtserie.Name = "txtserie";
+            this.txtserie.Size = new System.Drawing.Size(93, 15);
+            this.txtserie.TabIndex = 605;
+            this.txtserie.Text = "Comprobante";
+            // 
+            // lblComprobante
+            // 
+            this.lblComprobante.AutoSize = true;
+            this.lblComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComprobante.ForeColor = System.Drawing.Color.White;
+            this.lblComprobante.Location = new System.Drawing.Point(60, 0);
+            this.lblComprobante.Name = "lblComprobante";
+            this.lblComprobante.Size = new System.Drawing.Size(93, 15);
+            this.lblComprobante.TabIndex = 605;
+            this.lblComprobante.Text = "Comprobante";
             // 
             // FlowLayoutPanel2
             // 
@@ -919,7 +964,6 @@
             this.panelGuardado_de_datos.Controls.Add(this.TGuardarSinImprimir);
             this.panelGuardado_de_datos.Controls.Add(this.lblCantidad_de_numeros);
             this.panelGuardado_de_datos.Controls.Add(this.txtnumerofin);
-            this.panelGuardado_de_datos.Controls.Add(this.FlowLayoutPanel1);
             this.panelGuardado_de_datos.Controls.Add(this.panelClienteFactura);
             this.panelGuardado_de_datos.Controls.Add(this.FlowLayoutPanel3);
             this.panelGuardado_de_datos.Controls.Add(this.txtImpresora);
@@ -991,50 +1035,6 @@
             this.txtnumerofin.TabIndex = 613;
             this.txtnumerofin.Text = "Comprobante";
             this.txtnumerofin.Visible = false;
-            // 
-            // FlowLayoutPanel1
-            // 
-            this.FlowLayoutPanel1.Controls.Add(this.lblCorrelativoconCeros);
-            this.FlowLayoutPanel1.Controls.Add(this.txtserie);
-            this.FlowLayoutPanel1.Controls.Add(this.lblComprobante);
-            this.FlowLayoutPanel1.Location = new System.Drawing.Point(16, 515);
-            this.FlowLayoutPanel1.Name = "FlowLayoutPanel1";
-            this.FlowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.FlowLayoutPanel1.Size = new System.Drawing.Size(445, 42);
-            this.FlowLayoutPanel1.TabIndex = 611;
-            // 
-            // lblCorrelativoconCeros
-            // 
-            this.lblCorrelativoconCeros.AutoSize = true;
-            this.lblCorrelativoconCeros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorrelativoconCeros.ForeColor = System.Drawing.Color.White;
-            this.lblCorrelativoconCeros.Location = new System.Drawing.Point(349, 0);
-            this.lblCorrelativoconCeros.Name = "lblCorrelativoconCeros";
-            this.lblCorrelativoconCeros.Size = new System.Drawing.Size(93, 15);
-            this.lblCorrelativoconCeros.TabIndex = 606;
-            this.lblCorrelativoconCeros.Text = "Comprobante";
-            // 
-            // txtserie
-            // 
-            this.txtserie.AutoSize = true;
-            this.txtserie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtserie.ForeColor = System.Drawing.Color.White;
-            this.txtserie.Location = new System.Drawing.Point(250, 0);
-            this.txtserie.Name = "txtserie";
-            this.txtserie.Size = new System.Drawing.Size(93, 15);
-            this.txtserie.TabIndex = 605;
-            this.txtserie.Text = "Comprobante";
-            // 
-            // lblComprobante
-            // 
-            this.lblComprobante.AutoSize = true;
-            this.lblComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComprobante.ForeColor = System.Drawing.Color.White;
-            this.lblComprobante.Location = new System.Drawing.Point(151, 0);
-            this.lblComprobante.Name = "lblComprobante";
-            this.lblComprobante.Size = new System.Drawing.Size(93, 15);
-            this.lblComprobante.TabIndex = 605;
-            this.lblComprobante.Text = "Comprobante";
             // 
             // panelClienteFactura
             // 
@@ -1409,6 +1409,8 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.FlowLayoutPanel1.ResumeLayout(false);
+            this.FlowLayoutPanel1.PerformLayout();
             this.FlowLayoutPanel2.ResumeLayout(false);
             this.pcredito.ResumeLayout(false);
             this.pcredito.PerformLayout();
@@ -1417,8 +1419,6 @@
             this.MenuStrip9.PerformLayout();
             this.panelGuardado_de_datos.ResumeLayout(false);
             this.panelGuardado_de_datos.PerformLayout();
-            this.FlowLayoutPanel1.ResumeLayout(false);
-            this.FlowLayoutPanel1.PerformLayout();
             this.panelClienteFactura.ResumeLayout(false);
             this.panelClienteFactura.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datalistadoclientes3)).EndInit();
