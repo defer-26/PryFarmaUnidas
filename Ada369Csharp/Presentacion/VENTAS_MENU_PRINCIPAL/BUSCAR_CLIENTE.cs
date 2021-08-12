@@ -11,11 +11,12 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         private string documento;
         private string id;
 
-        public BUSCAR_CLIENTE(string documento, string nombre)
+        public BUSCAR_CLIENTE(string documento, string nombre, string id)
         {
             InitializeComponent();
             this.nombre = nombre;
             this.documento = documento;
+            this.id = id;
             listar_clientes();
         }
 
@@ -34,7 +35,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                         cmd.ExecuteNonQuery();
                         CONEXION.CONEXIONMAESTRA.cerrar();
                         CONEXION.CONEXIONMAESTRA.abrir();
-                        query = "SELECT id FROM clientes WHERE IdentificadorFiscal = '" + txtrucdefactura.Text + "'";
+                        query = "SELECT idclientev FROM clientes WHERE IdentificadorFiscal = '" + txtrucdefactura.Text + "'";
                         cmd = new SqlCommand(query, CONEXION.CONEXIONMAESTRA.conectar);
                         this.id = cmd.ExecuteScalar().ToString();
                         CONEXION.CONEXIONMAESTRA.cerrar();

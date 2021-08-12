@@ -37,6 +37,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         double credito = 0;
         int idcomprobante;
         string lblSerialPC;
+
         private void MEDIOS_DE_PAGO_Load(object sender, EventArgs e)
         {
             cambiar_el_formato_de_separador_de_decimales();
@@ -51,7 +52,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
             calcular_restante();
             validarPedidodeCliente();
-
         }
 
         void calcular_restante()
@@ -198,20 +198,51 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             }
             txtImpresora.Items.Add("Ninguna");
         }
+
         void Obtener_id_de_venta()
         {
-            idventa = VENTAS_MENU_PRINCIPALOK.idVenta;
+            idventa = VENTAS_MENU_PRINCIPAL_FINAL.idVenta;
         }
+
         void configuraciones_de_diseño()
         {
             TXTVUELTO.Text = "0.0";
             txtrestante.Text = "0.0";
-            TXTTOTAL.Text = moneda + " " + VENTAS_MENU_PRINCIPALOK.total;
-            total = VENTAS_MENU_PRINCIPALOK.total;
+            TXTTOTAL.Text = moneda + " " + VENTAS_MENU_PRINCIPAL_FINAL.total;
+            total = VENTAS_MENU_PRINCIPAL_FINAL.total;
             txtefectivo2.Text = Convert.ToString(total);
+            txttipo = VENTAS_MENU_PRINCIPAL_FINAL.tipoPago;
             idcliente = 0;
 
+            if (txttipo == "Efectivo") 
+            {
+                Label19.Visible = false;
+                txttarjeta2.Visible = false;
+                Panel21.Visible = false;
+                Label20.Visible = false;
+                txtcredito2.Visible = false;
+                Panel22.Visible = false;
+            }
+            else if (txttipo == "Crédito")
+            {
+                Label18.Visible = false;
+                txtefectivo2.Visible = false;
+                Panel20.Visible = false;
+                Label19.Visible = false;
+                txttarjeta2.Visible = false;
+                Panel21.Visible = false;
+            }
+            else if (txttipo == "Tarjeta")
+            {
+                Label18.Visible = false;
+                txtefectivo2.Visible = false;
+                Panel20.Visible = false;
+                Label20.Visible = false;
+                txtcredito2.Visible = false;
+                Panel22.Visible = false;
+            }
         }
+
         void mostrar_moneda_de_empresa()
         {
             SqlCommand cmd = new SqlCommand("Select Moneda From Empresa", CONEXION.CONEXIONMAESTRA.conectar);
@@ -247,8 +278,12 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             {
                 MessageBox.Show(ex.Message);
             }
+
+            //VERSIÓN ACTUAL:
+            lblComprobante.Text = VENTAS_MENU_PRINCIPAL_FINAL.tipoComprobante;
             dibujarCOMPROBANTES();
         }
+
         private void dibujarCOMPROBANTES()
         {
             FlowLayoutPanel3.Controls.Clear();
@@ -291,8 +326,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         }
         private void validarPedidodeCliente()
         {
-
-
             if (lblComprobante.Text == "FACTURA" && txttipo == "CREDITO")
             {
                 panelClienteFactura.Visible = false;
@@ -302,7 +335,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 panelClienteFactura.Visible = true;
                 lblindicador_de_factura_1.Text = "Cliente: (Obligatorio)";
                 lblindicador_de_factura_1.ForeColor = Color.FromArgb(255, 192, 192);
-
             }
             else if (lblComprobante.Text != "FACTURA" && txttipo == "EFECTIVO")
             {
@@ -325,9 +357,8 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 lblindicador_de_factura_1.Text = "Cliente: (Opcional)";
                 lblindicador_de_factura_1.ForeColor = Color.DimGray;
             }
-
-
         }
+
         void validar_tipos_de_comprobantes()
         {
             buscar_Tipo_de_documentos_para_insertar_en_ventas();
@@ -912,7 +943,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             if (lblproceso == "PROCEDE")
             {
                
-                VENTAS_MENU_PRINCIPALOK.EstadoMediosPago = true;
+                VENTAS_MENU_PRINCIPAL_FINAL.EstadoMediosPago = true;
                 disminuir_stock_productos();
                 INSERTAR_KARDEX_SALIDA();
                 aumentar_monto_a_cliente();
@@ -938,10 +969,10 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                         cmd.Parameters.AddWithValue("@Motivo", "Venta #" + lblComprobante.Text + " " + lblCorrelativoconCeros.Text);
                         cmd.Parameters.AddWithValue("@Cantidad ", cantidad);
                         cmd.Parameters.AddWithValue("@Id_producto", Id_producto);
-                        cmd.Parameters.AddWithValue("@Id_usuario", VENTAS_MENU_PRINCIPALOK.idusuario_que_inicio_sesion);
+                        cmd.Parameters.AddWithValue("@Id_usuario", VENTAS_MENU_PRINCIPAL_FINAL.idusuario_que_inicio_sesion);
                         cmd.Parameters.AddWithValue("@Tipo", "SALIDA");
                         cmd.Parameters.AddWithValue("@Estado", "DESPACHO CONFIRMADO");
-                        cmd.Parameters.AddWithValue("@Id_caja", VENTAS_MENU_PRINCIPALOK.Id_caja);
+                        cmd.Parameters.AddWithValue("@Id_caja", VENTAS_MENU_PRINCIPAL_FINAL.Id_caja);
                         cmd.ExecuteNonQuery();
                         CONEXION.CONEXIONMAESTRA.cerrar();
 
@@ -1299,7 +1330,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 SqlCommand cmd = new SqlCommand("editar_eleccion_impresoras", CONEXION.CONEXIONMAESTRA.conectar);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Impresora_Ticket", txtImpresora.Text);
-                cmd.Parameters.AddWithValue("@idcaja", VENTAS_MENU_PRINCIPALOK.Id_caja);
+                cmd.Parameters.AddWithValue("@idcaja", VENTAS_MENU_PRINCIPAL_FINAL.Id_caja);
                 cmd.ExecuteNonQuery();
                 CONEXION.CONEXIONMAESTRA.cerrar();
             }

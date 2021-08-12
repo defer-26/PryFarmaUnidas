@@ -416,8 +416,6 @@ namespace Ada369Csharp.Datos
                 cmd.Parameters.AddWithValue("@iddetalleventa", parametros.iddetalle_venta );
                 cmd.ExecuteNonQuery();
                 return true;
-
-
             }
             catch (Exception ex)
             {
@@ -430,6 +428,31 @@ namespace Ada369Csharp.Datos
                 CONEXIONMAESTRA.cerrar();
             }
         }
+
+        public bool quitar_precio_mayoreo(LdetalleVenta parametros)
+        {
+            try
+            {
+                CONEXIONMAESTRA.abrir();
+                string query = "select Precio_de_venta from Producto1 where Producto1.Id_Producto1 = "+parametros.Id_producto;
+                SqlCommand cmd = new SqlCommand(query, CONEXIONMAESTRA.conectar);
+                string price = cmd.ExecuteScalar().ToString();
+                query = "update detalle_venta set preciounitario=" + price + " where Id_producto = " + parametros.Id_producto + " and detalle_venta.iddetalle_venta = " + parametros.iddetalle_venta;
+                cmd = new SqlCommand(query, CONEXIONMAESTRA.conectar);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                CONEXIONMAESTRA.cerrar();
+            }
+        }
+
         public bool editarPrecioVenta(LdetalleVenta parametros)
         {
             try

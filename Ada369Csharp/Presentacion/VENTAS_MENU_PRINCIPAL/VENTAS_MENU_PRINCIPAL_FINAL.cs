@@ -11,15 +11,17 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
     public partial class VENTAS_MENU_PRINCIPAL_FINAL : Form
     {
         public static int idVenta;
+        public static string tipoComprobante;
+        public static string tipoPago;
         public static double total;
         public static string txtventagenerada;
         public static int idusuario_que_inicio_sesion;
         public static int Id_caja;
         public static double txtpantalla;
+        public static bool EstadoMediosPago = false;
         double lblStock_de_Productos;
         int idproducto;
         string Tema;
-        int iddetalleventa;
         int contadorVentasEspera;
         decimal stock_max;
         string idCliente = "1";
@@ -97,8 +99,8 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             {
                 LdetalleVenta parametros = new LdetalleVenta();
                 Editar_datos funcion = new Editar_datos();
-                parametros.Id_producto = idproducto;
-                parametros.iddetalle_venta = iddetalleventa;
+                parametros.Id_producto = Convert.ToInt32(detalleVenta.SelectedCells[8].Value.ToString());
+                parametros.iddetalle_venta = Convert.ToInt32(detalleVenta.SelectedCells[9].Value.ToString());
                 if (funcion.aplicar_precio_mayoreo(parametros) == true)
                 {
                     Listarproductosagregados();
@@ -121,19 +123,10 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 da.Fill(dt);
                 detalleVenta.DataSource = dt;
                 con.Close();
-                detalleVenta.Columns[0].Width = 50;
-                detalleVenta.Columns[1].Width = 50;
-                detalleVenta.Columns[2].Width = 50;
                 detalleVenta.Columns[3].Visible = false;
-                detalleVenta.Columns[4].Width = 250;
-                detalleVenta.Columns[5].Width = 100;
-                detalleVenta.Columns[6].Width = 100;
-                detalleVenta.Columns[7].Width = 100;
                 detalleVenta.Columns[8].Visible = false;
                 detalleVenta.Columns[9].Visible = false;
                 detalleVenta.Columns[10].Visible = false;
-                detalleVenta.Columns[11].Width = detalleVenta.Width - (detalleVenta.Columns[0].Width - detalleVenta.Columns[1].Width - detalleVenta.Columns[2].Width -
-                detalleVenta.Columns[4].Width - detalleVenta.Columns[5].Width - detalleVenta.Columns[6].Width - detalleVenta.Columns[7].Width);
                 detalleVenta.Columns[12].Visible = false;
                 detalleVenta.Columns[13].Visible = false;
                 detalleVenta.Columns[14].Visible = false;
@@ -208,14 +201,35 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             actualizar_numero_comprobante();
             total = Convert.ToDouble(txt_total_suma.Text);
-            MEDIOS_DE_PAGO frm = new MEDIOS_DE_PAGO();
-            frm.FormClosed += new FormClosedEventHandler(frm_FormClosed);
-            frm.ShowDialog();
+            if (txtventagenerada == "VENTA GENERADA")
+            {
+                if (cmbComprobante.Text == "FACTURA" && txtDocCliente.TextLength != 11)
+                {
+                    MessageBox.Show("Para entregar una factura el cliente debe tener registrado un RUC");
+                }
+                else if (cmbComprobante.Text == "BOLETA" && txtDocCliente.TextLength < 8)
+                {
+                    MessageBox.Show("Para entregar una boleta debe registrar al cliente");
+                }
+                else
+                {
+                    MEDIOS_DE_PAGO frm = new MEDIOS_DE_PAGO();
+                    frm.FormClosed += new FormClosedEventHandler(frm_FormClosed);
+                    frm.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha creado la venta");
+            }
         }
 
         private void frm_FormClosed(Object sender, FormClosedEventArgs e)
         {
-            Limpiar_para_venta_nueva();
+            if (EstadoMediosPago == true)
+            {
+                Limpiar_para_venta_nueva();
+            }
         }
 
         private void Limpiar_para_venta_nueva()
@@ -386,7 +400,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             try
             {
                 CONEXION.CONEXIONMAESTRA.abrir();
-                string query = "select tipodoc from Serializacion where Destino  ='VENTAS'";
+                string query = "select tipodoc from Serializacion where Destino  = 'VENTAS'";
                 SqlCommand cmd = new SqlCommand(query, CONEXION.CONEXIONMAESTRA.conectar);
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -407,10 +421,11 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             try
             {
+                tipoComprobante = cmbComprobante.Text;
                 CONEXION.CONEXIONMAESTRA.abrir();
                 SqlCommand cmd = new SqlCommand("buscar_Tipo_de_documentos_para_insertar_en_ventas", CONEXION.CONEXIONMAESTRA.conectar);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@letra", cmbComprobante.Text);
+                cmd.Parameters.AddWithValue("@letra", tipoComprobante);
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 string serie = "";
@@ -442,11 +457,26 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BUSCAR_CLIENTE frm = new BUSCAR_CLIENTE(txtDocCliente.Text, txtNomCliente.Text);
+            BUSCAR_CLIENTE frm = new BUSCAR_CLIENTE(txtDocCliente.Text, txtNomCliente.Text, idCliente);
             frm.ShowDialog();
             txtNomCliente.Text = frm.getName();
             txtDocCliente.Text = frm.getDocument();
             idCliente = frm.getId();
+            if (txtventagenerada == "VENTA GENERADA")
+            {
+                try
+                {
+                    string query = "UPDATE ventas SET idclientev = " + idCliente + " WHERE idventa = " + idVenta;
+                    CONEXION.CONEXIONMAESTRA.abrir();
+                    SqlCommand cmd = new SqlCommand(query, CONEXION.CONEXIONMAESTRA.conectar);
+                    cmd.ExecuteNonQuery();
+                    CONEXION.CONEXIONMAESTRA.cerrar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -540,7 +570,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             {
                 if (txtProdPrecio.Text != "")
                 {
-                    if (stock_max < Convert.ToInt32(txtProdCantidad.Text))
+                    if (stock_max < Convert.ToDecimal(txtProdCantidad.Text))
                     {
                         MessageBox.Show("Stock Insuficiente");
                         txtProdCantidad.Text = stock_max.ToString();
@@ -558,7 +588,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         {
             try
             {
-                txtProdImporte.Text = ((Convert.ToInt32(txtProdCantidad.Text) * Convert.ToDouble(txtProdPrecio.Text)) - Convert.ToDouble(txtProdDescuento.Text)).ToString();
+                txtProdImporte.Text = ((Convert.ToDouble(txtProdCantidad.Text) * Convert.ToDouble(txtProdPrecio.Text)) - Convert.ToDouble(txtProdDescuento.Text)).ToString();
                 DataTable dt = new DataTable();
                 SqlDataAdapter da;
                 SqlConnection con = new SqlConnection();
@@ -580,6 +610,11 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                     insertar_detalle_venta();
                     Listarproductosagregados();
                 }
+
+                txtProdDescripcion.Text = "";
+                txtProdCantidad.Text = "0";
+                txtProdDescuento.Text = "0";
+                txtProdPrecio.Text = "0";
             }
             catch (Exception ex)
             {
@@ -626,6 +661,27 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                     MessageBox.Show("insertar_venta");
                 }
 
+            }
+        }
+
+        private void eliminar_venta(int id_v)
+        {
+            try
+            {
+                SqlCommand cmd;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = CONEXION.CONEXIONMAESTRA.conexion;
+                con.Open();
+                cmd = new SqlCommand("eliminar_venta", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idventa", id_v);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Limpiar_para_venta_nueva();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -766,6 +822,31 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 LICENCIAS_MENBRESIAS.MembresiasNuevo frm = new LICENCIAS_MENBRESIAS.MembresiasNuevo();
                 frm.ShowDialog();
             }
+        }
+
+        private void btneliminar_Click(object sender, EventArgs e)
+        {
+            eliminar_venta(idVenta);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (detalleVenta.Rows.Count > 0)
+            {
+                LdetalleVenta parametros = new LdetalleVenta();
+                Editar_datos funcion = new Editar_datos();
+                parametros.Id_producto = Convert.ToInt32(detalleVenta.SelectedCells[8].Value.ToString());
+                parametros.iddetalle_venta = Convert.ToInt32(detalleVenta.SelectedCells[9].Value.ToString());
+                if (funcion.quitar_precio_mayoreo(parametros) == true)
+                {
+                    Listarproductosagregados();
+                }
+            }
+        }
+
+        private void cmbFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tipoPago = cmbFormaPago.Text;
         }
     }
 }
