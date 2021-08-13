@@ -155,7 +155,7 @@ namespace Ada369Csharp.Presentacion.CAJA
         private void btnvolver_Click(object sender, EventArgs e)
         {
             Dispose();
-            VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPALOK();
+            VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL frm = new VENTAS_MENU_PRINCIPAL.VENTAS_MENU_PRINCIPAL_FINAL();
             frm.ShowDialog();
         }
     }

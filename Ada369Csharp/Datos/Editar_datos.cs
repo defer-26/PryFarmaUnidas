@@ -36,7 +36,6 @@ namespace Ada369Csharp.Datos
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.StackTrace);
             }
         }

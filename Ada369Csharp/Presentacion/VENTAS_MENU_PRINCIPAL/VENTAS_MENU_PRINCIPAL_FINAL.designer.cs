@@ -381,6 +381,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             this.IndicadorTema.TabIndex = 0;
             this.IndicadorTema.Text = "uI_MaterialToggle1";
             this.IndicadorTema.UseVisualStyleBackColor = true;
+            this.IndicadorTema.CheckedChanged += new System.EventHandler(this.IndicadorTema_CheckedChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -686,6 +687,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             this.detalleVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.detalleVenta.Size = new System.Drawing.Size(920, 89);
             this.detalleVenta.TabIndex = 614;
+            this.detalleVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.detalleVenta_CellClick);
             // 
             // EL
             // 

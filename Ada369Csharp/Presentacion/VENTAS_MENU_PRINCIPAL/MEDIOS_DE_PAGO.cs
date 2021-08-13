@@ -945,9 +945,9 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         }
         void procesar_venta_efectivo()
         {
-            actualizar_serie_mas_uno();
             validar_tipos_de_comprobantes();
             CONFIRMAR_VENTA_EFECTIVO();
+            actualizar_serie_mas_uno();
             if (lblproceso == "PROCEDE")
             {
                
@@ -956,7 +956,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 INSERTAR_KARDEX_SALIDA();
                 aumentar_monto_a_cliente();
                 validar_tipo_de_impresion();
- reportViewer1.Focus();
+                reportViewer1.Focus();
             }
         }
         void INSERTAR_KARDEX_SALIDA()

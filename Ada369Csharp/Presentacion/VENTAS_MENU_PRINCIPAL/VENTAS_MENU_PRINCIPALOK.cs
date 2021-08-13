@@ -742,7 +742,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         }
         private void Obtener_datos_del_detalle_de_venta()
         {
-
             try
             {
                 iddetalleventa = Convert.ToInt32(dgDetalleventa.SelectedCells[9].Value.ToString());

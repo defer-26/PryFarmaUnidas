@@ -5,6 +5,7 @@ using Ada369Csharp.Datos;
 using Ada369Csharp.Logica;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 {
@@ -236,17 +237,21 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             if (EstadoMediosPago == true)
             {
                 Limpiar_para_venta_nueva();
+                actualizar_numero_comprobante();
             }
         }
 
         private void Limpiar_para_venta_nueva()
         {
+            txtFecha.Text = DateTime.Today.ToString("dd-MM-yyyy");
             idVenta = 0;
             Listarproductosagregados();
             txtventagenerada = "VENTA NUEVA";
             txtDocCliente.Text = "0";
             txtNomCliente.Text = "GENÉRICO";
             idCliente = "1";
+            cmbFormaPago.SelectedIndex = 0;
+            cmbComprobante.SelectedIndex = 0;
             sumar();
             //PanelEnespera.Visible = false;
             //panelBienvenida.Visible = true;
@@ -270,7 +275,6 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
         private void VENTAS_MENU_PRINCIPAL_FINAL_Load(object sender, EventArgs e)
         {
-            txtFecha.Text = DateTime.Today.ToString("dd-MM-yyyy");
             llenar_combo_comprobantes();
             cmbFormaPago.SelectedIndex = 0;
             validarLicencia();
@@ -308,6 +312,91 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
         private void TemaOscuro()
         {
+            panel1.BackColor = Color.FromArgb(35, 35, 35);
+            panel1.ForeColor = Color.White;
+
+            panel2.BackColor = Color.FromArgb(35, 35, 35);
+            panel2.ForeColor = Color.White;
+
+            panel3.BackColor = Color.FromArgb(35, 35, 35);
+            panel3.ForeColor = Color.White;
+
+            panel4.BackColor = Color.FromArgb(35, 35, 35);
+            panel4.ForeColor = Color.White;
+
+            txtFecha.BackColor = Color.FromArgb(20, 20, 20);
+            txtFecha.ForeColor = Color.White;
+
+            cmbComprobante.BackColor = Color.FromArgb(20, 20, 20);
+            cmbComprobante.ForeColor = Color.White;
+
+            txtNumComprobante.BackColor = Color.FromArgb(20, 20, 20);
+            txtNumComprobante.ForeColor = Color.White;
+
+            cmbFormaPago.BackColor = Color.FromArgb(20, 20, 20);
+            cmbFormaPago.ForeColor = Color.White;
+
+
+            txtNomCliente.BackColor = Color.FromArgb(20, 20, 20);
+            txtNomCliente.ForeColor = Color.White;
+
+            txtDocCliente.BackColor = Color.FromArgb(20, 20, 20);
+            txtDocCliente.ForeColor = Color.White;
+
+
+            txtProdDescripcion.BackColor = Color.FromArgb(20, 20, 20);
+            txtProdDescripcion.ForeColor = Color.White;
+
+            txtProdPrecio.BackColor = Color.FromArgb(20, 20, 20);
+            txtProdPrecio.ForeColor = Color.White;
+
+            txtProdCantidad.BackColor = Color.FromArgb(20, 20, 20);
+            txtProdCantidad.ForeColor = Color.White;
+
+            txtProdDescuento.BackColor = Color.FromArgb(20, 20, 20);
+            txtProdDescuento.ForeColor = Color.White;
+
+            txtProdImporte.BackColor = Color.FromArgb(20, 20, 20);
+            txtProdImporte.ForeColor = Color.White;
+
+
+            button1.BackColor = Color.FromArgb(20, 20, 20);
+            button1.ForeColor = Color.White;
+            button3.BackColor = Color.FromArgb(20, 20, 20);
+            button3.ForeColor = Color.White;
+            button4.BackColor = Color.FromArgb(20, 20, 20);
+            button4.ForeColor = Color.White;
+            button2.BackColor = Color.FromArgb(20, 20, 20);
+            button2.ForeColor = Color.White;
+            btnCobros.BackColor = Color.FromArgb(20, 20, 20);
+            btnCobros.ForeColor = Color.White;
+            btnCreditoCobrar.BackColor = Color.FromArgb(20, 20, 20);
+            btnCreditoCobrar.ForeColor = Color.White;
+            btnCreditoPagar.BackColor = Color.FromArgb(20, 20, 20);
+            btnCreditoPagar.ForeColor = Color.White;
+
+            panelC2.BackColor = Color.FromArgb(35, 35, 35);
+            panelC2.ForeColor = Color.White;
+            PanelC1.BackColor = Color.FromArgb(35, 35, 35);
+            PanelC1.ForeColor = Color.White;
+            btnadmin.BackColor = Color.FromArgb(35, 35, 35);
+            btnadmin.ForeColor = Color.White;
+
+            lblNombreSoftware.ForeColor = Color.White;
+
+            StatusStrip4.BackColor = Color.FromArgb(35, 35, 35);
+            StatusStrip4.ForeColor = Color.White;
+
+            btnMayoreo.BackColor = Color.FromArgb(20, 20, 20);
+            btnMayoreo.ForeColor = Color.White;
+            toolStripButton2.BackColor = Color.FromArgb(20, 20, 20);
+            toolStripButton2.ForeColor = Color.White;
+            btnIngresosCaja.BackColor = Color.FromArgb(20, 20, 20);
+            btnIngresosCaja.ForeColor = Color.White;
+            toolStripButton1.BackColor = Color.FromArgb(20, 20, 20);
+            toolStripButton1.ForeColor = Color.White;
+            btnTeclado.BackColor = Color.FromArgb(20, 20, 20);
+            btnTeclado.ForeColor = Color.White;
             ////PanelC1 Encabezado
             //PanelC1.BackColor = Color.FromArgb(35, 35, 35);
             //lblNombreSoftware.ForeColor = Color.White;
@@ -357,51 +446,137 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
         private void TemaClaro()
         {
-        //    //PanelC1 encabezado
-        //    PanelC1.BackColor = Color.White;
-        //    lblNombreSoftware.ForeColor = Color.Black;
-        //    btnadmin.ForeColor = Color.Black;
-        //    txtbuscar.BackColor = Color.White;
-        //    txtbuscar.ForeColor = Color.Black;
-        //    lbltipodebusqueda2.BackColor = Color.White;
+            panel1.BackColor = Color.White;
+            panel1.ForeColor = Color.Black;
 
-        //    //PanelC2 intermedio
-        //    panelC2.BackColor = Color.White;
-        //    btnCobros.BackColor = Color.WhiteSmoke;
-        //    btnCobros.ForeColor = Color.Black;
+            panel2.BackColor = Color.White;
+            panel2.ForeColor = Color.Black;
+
+            panel3.BackColor = Color.White;
+            panel3.ForeColor = Color.Black;
+
+            panel4.BackColor = Color.White;
+            panel4.ForeColor = Color.Black;
+
+            txtFecha.BackColor = Color.White;
+            txtFecha.ForeColor = Color.Black;
+
+            cmbComprobante.BackColor = Color.White;
+            cmbComprobante.ForeColor = Color.Black;
 
 
-        //    btnCreditoCobrar.BackColor = Color.WhiteSmoke;
-        //    btnCreditoCobrar.ForeColor = Color.Black;
-        //    btnCreditoPagar.BackColor = Color.WhiteSmoke;
-        //    btnCreditoPagar.ForeColor = Color.Black;
+            txtNumComprobante.BackColor = Color.White;
+            txtNumComprobante.ForeColor = Color.Black;
 
-        //    //PanelC3
-        //    PanelC3.BackColor = Color.White;
-        //    btnMayoreo.BackColor = Color.WhiteSmoke;
-        //    btnMayoreo.ForeColor = Color.Black;
-        //    btnIngresosCaja.BackColor = Color.WhiteSmoke;
-        //    btnIngresosCaja.ForeColor = Color.Black;
-        //    btnGastos.BackColor = Color.WhiteSmoke;
-        //    btnGastos.ForeColor = Color.Black;
-        //    BtnTecladoV.BackColor = Color.WhiteSmoke;
-        //    BtnTecladoV.ForeColor = Color.Black;
-        //    //PanelC4 pie de pagina
-        //    panelC4.BackColor = Color.Gainsboro;
-        //    btnespera.BackColor = Color.Gainsboro;
-        //    btnespera.ForeColor = Color.Black;
-        //    btnrestaurar.BackColor = Color.Gainsboro;
-        //    btnrestaurar.ForeColor = Color.Black;
-        //    btneliminar.BackColor = Color.Gainsboro;
-        //    btneliminar.ForeColor = Color.Black;
-        //    btndevoluciones.BackColor = Color.Gainsboro;
-        //    btndevoluciones.ForeColor = Color.Black;
-        //    //PanelOperaciones
-        //    PanelOperaciones.BackColor = Color.FromArgb(242, 243, 245);
-        //    txt_total_suma.ForeColor = Color.Black;
-        //    //PanelBienvenida
-        //    panelBienvenida.BackColor = Color.White;
-        //    label8.ForeColor = Color.FromArgb(64, 64, 64);
+            cmbFormaPago.BackColor = Color.White;
+            cmbFormaPago.ForeColor = Color.Black;
+
+
+            txtNomCliente.BackColor = Color.White;
+            txtNomCliente.ForeColor = Color.Black;
+
+            txtDocCliente.BackColor = Color.White;
+            txtDocCliente.ForeColor = Color.Black;
+
+
+            txtProdDescripcion.BackColor = Color.White;
+            txtProdDescripcion.ForeColor = Color.Black;
+
+            txtProdPrecio.BackColor = Color.White;
+            txtProdPrecio.ForeColor = Color.Black;
+
+            txtProdCantidad.BackColor = Color.White;
+            txtProdCantidad.ForeColor = Color.Black;
+
+            txtProdDescuento.BackColor = Color.White;
+            txtProdDescuento.ForeColor = Color.Black;
+
+            txtProdImporte.BackColor = Color.White;
+            txtProdImporte.ForeColor = Color.Black;
+
+
+            button1.BackColor = Color.WhiteSmoke;
+            button1.ForeColor = Color.Black;
+            button3.BackColor = Color.WhiteSmoke;
+            button3.ForeColor = Color.Black;
+            button4.BackColor = Color.WhiteSmoke;
+            button4.ForeColor = Color.Black;
+            button2.BackColor = Color.WhiteSmoke;
+            button2.ForeColor = Color.Black;
+            btnCobros.BackColor = Color.WhiteSmoke;
+            btnCobros.ForeColor = Color.Black;
+            btnCreditoCobrar.BackColor = Color.WhiteSmoke;
+            btnCreditoCobrar.ForeColor = Color.Black;
+            btnCreditoPagar.BackColor = Color.WhiteSmoke;
+            btnCreditoPagar.ForeColor = Color.Black;
+
+            panelC2.BackColor = Color.White;
+            panelC2.ForeColor = Color.Black;
+            PanelC1.BackColor = Color.White;
+            PanelC1.ForeColor = Color.Black;
+            btnadmin.BackColor = Color.White;
+            btnadmin.ForeColor = Color.Black;
+
+            lblNombreSoftware.ForeColor = Color.Black;
+
+            StatusStrip4.BackColor = Color.White;
+            StatusStrip4.ForeColor = Color.Black;
+
+            btnMayoreo.BackColor = Color.White;
+            btnMayoreo.ForeColor = Color.Black;
+            toolStripButton2.BackColor = Color.White;
+            toolStripButton2.ForeColor = Color.Black;
+            btnIngresosCaja.BackColor = Color.White;
+            btnIngresosCaja.ForeColor = Color.Black;
+            toolStripButton1.BackColor = Color.White;
+            toolStripButton1.ForeColor = Color.Black;
+            btnTeclado.BackColor = Color.White;
+            btnTeclado.ForeColor = Color.Black;
+            //    //PanelC1 encabezado
+            //    PanelC1.BackColor = Color.White;
+            //    lblNombreSoftware.ForeColor = Color.Black;
+            //    btnadmin.ForeColor = Color.Black;
+            //    txtbuscar.BackColor = Color.White;
+            //    txtbuscar.ForeColor = Color.Black;
+            //    lbltipodebusqueda2.BackColor = Color.White;
+
+            //    //PanelC2 intermedio
+            //    panelC2.BackColor = Color.White;
+            //    btnCobros.BackColor = Color.WhiteSmoke;
+            //    btnCobros.ForeColor = Color.Black;
+
+
+            //    btnCreditoCobrar.BackColor = Color.WhiteSmoke;
+            //    btnCreditoCobrar.ForeColor = Color.Black;
+            //    btnCreditoPagar.BackColor = Color.WhiteSmoke;
+            //    btnCreditoPagar.ForeColor = Color.Black;
+
+            //    //PanelC3
+            //    PanelC3.BackColor = Color.White;
+            //    btnMayoreo.BackColor = Color.WhiteSmoke;
+            //    btnMayoreo.ForeColor = Color.Black;
+            //    btnIngresosCaja.BackColor = Color.WhiteSmoke;
+            //    btnIngresosCaja.ForeColor = Color.Black;
+            //    btnGastos.BackColor = Color.WhiteSmoke;
+            //    btnGastos.ForeColor = Color.Black;
+            //    BtnTecladoV.BackColor = Color.WhiteSmoke;
+            //    BtnTecladoV.ForeColor = Color.Black;
+            //    //PanelC4 pie de pagina
+            //    panelC4.BackColor = Color.Gainsboro;
+            //    btnespera.BackColor = Color.Gainsboro;
+            //    btnespera.ForeColor = Color.Black;
+            //    btnrestaurar.BackColor = Color.Gainsboro;
+            //    btnrestaurar.ForeColor = Color.Black;
+            //    btneliminar.BackColor = Color.Gainsboro;
+            //    btneliminar.ForeColor = Color.Black;
+            //    btndevoluciones.BackColor = Color.Gainsboro;
+            //    btndevoluciones.ForeColor = Color.Black;
+            //    //PanelOperaciones
+            //    PanelOperaciones.BackColor = Color.FromArgb(242, 243, 245);
+            //    txt_total_suma.ForeColor = Color.Black;
+            //    //PanelBienvenida
+            //    panelBienvenida.BackColor = Color.White;
+            //    label8.ForeColor = Color.FromArgb(64, 64, 64);
             Listarproductosagregados();
         }
 
@@ -522,15 +697,12 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                         verificar_stock();
                     }
                     rdr.Close();
+                    CONEXION.CONEXIONMAESTRA.cerrar();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                CONEXION.CONEXIONMAESTRA.cerrar();
             }
         }
 
@@ -648,10 +820,10 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                     cmd.Parameters.AddWithValue("@fecha_venta", DateTime.Today);
                     cmd.Parameters.AddWithValue("@nume_documento", 0);
                     cmd.Parameters.AddWithValue("@montototal", 0);
-                    cmd.Parameters.AddWithValue("@Tipo_de_pago", 0);
+                    cmd.Parameters.AddWithValue("@Tipo_de_pago", cmbFormaPago.Text);
                     cmd.Parameters.AddWithValue("@estado", "EN ESPERA");
                     cmd.Parameters.AddWithValue("@IGV", 0);
-                    cmd.Parameters.AddWithValue("@Comprobante", 0);
+                    cmd.Parameters.AddWithValue("@Comprobante", cmbComprobante.Text);
                     cmd.Parameters.AddWithValue("@id_usuario", idusuario_que_inicio_sesion);
                     cmd.Parameters.AddWithValue("@Fecha_de_pago", DateTime.Today);
                     cmd.Parameters.AddWithValue("@ACCION", "VENTA");
@@ -762,7 +934,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
                 cmd.Parameters.AddWithValue("@Costo", txtProdImporte.Text);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                disminuir_stock_en_detalle_de_venta();
+                disminuir_stock_en_detalle_de_venta(idproducto.ToString(), txtpantalla.ToString());
             }
             catch (Exception ex)
             {
@@ -803,7 +975,7 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
             }
         }
 
-        private void disminuir_stock_en_detalle_de_venta()
+        private void disminuir_stock_en_detalle_de_venta(string idproducto, string txtpantalla)
         {
             try
             {
@@ -870,6 +1042,35 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
         private void Frm_FormClosing1(object sender, FormClosingEventArgs e)
         {
             Listarproductosagregados();
+            try
+            {
+                if(detalleVenta.Rows.Count > 0)
+                {
+                    string query = "SELECT c.idclientev, c.Nombre, c.IdentificadorFiscal, v.Comprobante, v.Tipo_de_pago FROM ventas v " +
+                                "INNER JOIN clientes c ON c.idclientev = v.idclientev " +
+                                "WHERE v.idventa = " + idVenta;
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = CONEXION.CONEXIONMAESTRA.conexion+ ";MultipleActiveResultSets=True";
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        txtDocCliente.Text = rdr["IdentificadorFiscal"].ToString();
+                        txtNomCliente.Text = rdr["Nombre"].ToString();
+                        idCliente = rdr["idclientev"].ToString();
+                        cmbComprobante.SelectedItem = (rdr["Comprobante"].ToString().Split(' '))[0];
+                        actualizar_numero_comprobante();
+                        cmbFormaPago.SelectedItem = rdr["Tipo_de_pago"].ToString();
+                    }
+                    rdr.Close();
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             //mostrar_panel_de_Cobro();
         }
 
@@ -917,8 +1118,199 @@ namespace Ada369Csharp.Presentacion.VENTAS_MENU_PRINCIPAL
 
         private void btnAutomaticoEspera_Click(object sender, EventArgs e)
         {
-            txtnombre.Text = "Ticket" + idVenta;
+            txtnombre.Text = cmbComprobante.Text + " " + idVenta;
             editarVentaEspera();
+        }
+
+        private void detalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int iddetalleventa = Convert.ToInt32(detalleVenta.SelectedCells[9].Value.ToString());
+                int idproducto = Convert.ToInt32(detalleVenta.SelectedCells[8].Value.ToString());
+                string sevendePor = detalleVenta.SelectedCells[17].Value.ToString();
+                string usainventarios = detalleVenta.SelectedCells[16].Value.ToString();
+                double cantidad = Convert.ToDouble(detalleVenta.SelectedCells[5].Value);
+                double txtpantalla;
+
+                if (e.ColumnIndex == this.detalleVenta.Columns["S"].Index)
+                {
+                    txtpantalla = 1;
+                    editar_detalle_venta_sumar(idproducto.ToString(), txtpantalla.ToString(), usainventarios);
+                }
+                if (e.ColumnIndex == this.detalleVenta.Columns["R"].Index)
+                {
+                    txtpantalla = 1;
+                    editar_detalle_venta_restar(iddetalleventa.ToString(), txtpantalla.ToString(), idproducto.ToString());
+                    EliminarVentas();
+                }
+
+                if (e.ColumnIndex == this.detalleVenta.Columns["EL"].Index)
+                {
+                    int iddetalle_venta = Convert.ToInt32(detalleVenta.SelectedCells[9].Value);
+                    try
+                    {
+                        SqlCommand cmd;
+                        SqlConnection con = new SqlConnection();
+                        con.ConnectionString = CONEXION.CONEXIONMAESTRA.conexion;
+                        con.Open();
+                        cmd = new SqlCommand("eliminar_detalle_venta", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@iddetalleventa", iddetalle_venta);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        txtpantalla = Convert.ToDouble(detalleVenta.SelectedCells[5].Value);
+                        aumentar_stock_en_detalle_de_venta(idproducto.ToString(), txtpantalla.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    Listarproductosagregados();
+                    EliminarVentas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void editar_detalle_venta_sumar(string idproducto, string txtpantalla, string usainventarios)
+        {
+            if (usainventarios == "SI")
+            {
+                double lblStock_de_Productos = Convert.ToDouble(detalleVenta.SelectedCells[15].Value.ToString());
+                if (lblStock_de_Productos > 0)
+                {
+                    ejecutar_editar_detalle_venta_sumar(idproducto, txtpantalla);
+                    disminuir_stock_en_detalle_de_venta(idproducto, txtpantalla);
+                }
+                else
+                {
+                    MessageBox.Show("No hay stock");
+                }
+            }
+            else
+            {
+                ejecutar_editar_detalle_venta_sumar(idproducto, txtpantalla);
+            }
+            Listarproductosagregados();
+        }
+
+        private void ejecutar_editar_detalle_venta_sumar(string idproducto, string txtpantalla)
+        {
+            try
+            {
+                SqlCommand cmd;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = CONEXION.CONEXIONMAESTRA.conexion;
+                con.Open();
+                cmd = new SqlCommand("editar_detalle_venta_sumar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id_producto", idproducto);
+                cmd.Parameters.AddWithValue("@cantidad", txtpantalla);
+                cmd.Parameters.AddWithValue("@Cantidad_mostrada", txtpantalla);
+                cmd.Parameters.AddWithValue("@Id_venta", idVenta);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void editar_detalle_venta_restar(string iddetalleventa, string txtpantalla, string idproducto)
+        {
+            if (usainventarios == "SI")
+            {
+                ejecutar_editar_detalle_venta_restar(iddetalleventa, txtpantalla, idproducto);
+                aumentar_stock_en_detalle_de_venta(idproducto, txtpantalla);
+            }
+            else
+            {
+                ejecutar_editar_detalle_venta_restar(iddetalleventa, txtpantalla, idproducto);
+            }
+            Listarproductosagregados();
+        }
+
+        private void ejecutar_editar_detalle_venta_restar(string iddetalleventa, string txtpantalla, string idproducto)
+        {
+            try
+            {
+                SqlCommand cmd;
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = CONEXION.CONEXIONMAESTRA.conexion;
+                con.Open();
+                cmd = new SqlCommand("editar_detalle_venta_restar", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@iddetalle_venta", iddetalleventa);
+                cmd.Parameters.AddWithValue("cantidad", txtpantalla);
+                cmd.Parameters.AddWithValue("@Cantidad_mostrada", txtpantalla);
+                cmd.Parameters.AddWithValue("@Id_producto", idproducto);
+                cmd.Parameters.AddWithValue("@Id_venta", idVenta);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void aumentar_stock_en_detalle_de_venta(string idproducto, string txtpantalla)
+        {
+            try
+            {
+                CONEXION.CONEXIONMAESTRA.abrir();
+                SqlCommand cmd = new SqlCommand("aumentar_stock_en_detalle_de_venta", CONEXION.CONEXIONMAESTRA.conectar);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id_Producto1", idproducto);
+                cmd.Parameters.AddWithValue("@cantidad", txtpantalla);
+                cmd.ExecuteNonQuery();
+                CONEXION.CONEXIONMAESTRA.cerrar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void EliminarVentas()
+        {
+            int Contador = detalleVenta.Rows.Count;
+            if (Contador == 0)
+            {
+                eliminar_venta(idVenta);
+                Limpiar_para_venta_nueva();
+            }
+        }
+
+        private void IndicadorTema_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IndicadorTema.Checked == true)
+            {
+                Tema = "Oscuro";
+                EditarTemaCaja();
+                TemaOscuro();
+                Listarproductosagregados();
+            }
+            else
+            {
+                Tema = "Redentor";
+                EditarTemaCaja();
+                TemaClaro();
+                Listarproductosagregados();
+            }
+        }
+
+        private void EditarTemaCaja()
+        {
+            Lcaja parametros = new Lcaja();
+            Editar_datos funcion = new Editar_datos();
+            parametros.Tema = Tema;
+            funcion.EditarTemaCaja(parametros);
         }
     }
 }
